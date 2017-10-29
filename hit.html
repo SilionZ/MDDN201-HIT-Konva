@@ -4,9 +4,8 @@
 
 <head>
   <title>Bingo!Idea</title>
-  <script src="js/konvamin.js"></script>
   <link rel="stylesheet" type="text/css" href="css/drag.css">
-  <script src="js/resize.js"></script>
+<script src="js/konvamin.js"></script>
 </head>
 
 
@@ -27,7 +26,7 @@
 <div id="img1"><a href="index.html"><img src="img/logo.png" style="width:172px;height:232px;"></a></div>
 <div id="img2"><img src="img/WVE.JPG" style="width:880px;height:73px;"></div>
 
-<div id="container">
+<div id="container"></div>
 
 <script>
         var stageWidth = 1400;
@@ -45,7 +44,6 @@
     stage.add(tempLayer);
     var text = new Konva.Text({
     });
-
 
 
       //creates and returns a draggable image
@@ -67,9 +65,9 @@
     imageObj1.onload = function() {
     var image1 = addDraggableImage(1300,40, 35, 35);
     image1.image(imageObj1);
-            layer.add(image1);
-            layer.draw();
-                image1.id = 'point';
+    image1.id = 'point';
+    layer.add(image1);
+    layer.draw();
       };
 
 
@@ -78,8 +76,8 @@
       imageObj2.onload = function() {
           var image2 = addDraggableImage(1280,120, 80, 80);
           image2.image(imageObj2);
-            layer.add(image2);
-            layer.draw();
+          layer.add(image2);
+          layer.draw();
           image2.id = 'line';
       };
 
@@ -88,8 +86,8 @@
       imageObj3.onload = function() {
           var image3 = addDraggableImage(1280, 220, 80, 80);
           image3.image(imageObj3);
-            layer.add(image3);
-            layer.draw();
+          layer.add(image3);
+          layer.draw();
           image3.id = 'face';
       };
 
@@ -98,8 +96,8 @@
       imageObj6.onload = function() {
           var image6 = addDraggableImage(1290,320, 60, 70);
           image6.image(imageObj6);
-            layer.add(image6);
-            layer.draw();
+          layer.add(image6);
+          layer.draw();
           image6.id = 'echo';
       };
 
@@ -136,54 +134,107 @@
       var imageObj4 = new Image();
       imageObj4.src = 'img/nature.png';
 
-
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
       var imageObj5 = new Image();
       imageObj5.src = 'img/deal.png';
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj7 = new Image();
       imageObj7.src = 'img/cloud.png';
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj8 = new Image();
       imageObj8.src = 'img/drama.png';
 
 
-
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj11 = new Image();
       imageObj11.src = 'img/cartoon.png';
 
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj12 = new Image();
       imageObj12.src = 'img/torto.png';
 
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
+
     var imageObj13 = new Image();
       imageObj13.src = 'img/surf.png';
 
+
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj14 = new Image();
       imageObj14.src = 'img/swing.png';
 
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
+
     var imageObj15 = new Image();
       imageObj15.src = 'img/wave.png';
 
+
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj17 = new Image();
       imageObj17.src = 'img/flow.png';
 
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
+
     var imageObj18 = new Image();
     imageObj18.src = 'img/chess.png';
 
 
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
+
     var imageObj19 = new Image();
     imageObj19.src = 'img/sept.png';
 
+
+    stage.on("dragstart", function(e){
+        e.target.moveTo(tempLayer);
+        layer.draw();
+    });
 
     var imageObj20 = new Image();
     imageObj20.src = 'img/mur.png';
@@ -192,11 +243,6 @@
     stage.on("dragstart", function(e){
         e.target.moveTo(tempLayer);
         layer.draw();
-        e.target.stopDrag();
-        var clone = e.target.clone();
-        clone.on('dragstart')
-        tempLayer.add(clone);
-        clone.startDrag();
     });
 
     var previousShape;
@@ -236,9 +282,9 @@
     });
     stage.on("dragend", function(e){
         var pos = stage.getPointerPosition();
-        var shape = tempLayer.getIntersection(pos);
+        var shape = layer.getIntersection(pos);
 
-    if (stage) {
+    if (shape) {
 
           // Print out and the ids of the shapes being interacted with
           var clickOnId = e.target.id;
@@ -252,12 +298,11 @@
             || clickOnId === 'point' && intersectedWithId === 'line'){
             var image4 = addDraggableImage(pos.x-40, pos.y-40, 80, 80);
             image4.image(imageObj4);
-            layer.add()
-            tempLayer.add(image4);
-            tempLayer.draw();
+            layer.add(image4);
+            layer.draw();
             image4.id = 'nature';
           }
-/*          if(clickOnId === 'line' && intersectedWithId === 'face'
+          if(clickOnId === 'line' && intersectedWithId === 'face'
             || clickOnId === 'face' && intersectedWithId === 'line'){
             var image5 = addDraggableImage(pos.x-40, pos.y-40, 80, 80);
             image5.image(imageObj5);
@@ -352,21 +397,19 @@
             layer.add(image20);
             layer.draw();
             image20.id = 'mur'; 
-          }*/
+          }
         }
         previousShape = undefined;
-        e.target.moveTo(tempLayer);
-        tempLayer.draw();
+        e.target.moveTo(layer);
+        layer.draw();
         tempLayer.draw();
     });
-
       // use event delegation to update pointer style
       // and apply borders
       layer.on('mouseover', function(evt) {
           var shape = evt.target;
           document.body.style.cursor = 'pointer';
-          tempLayer.draw();
-
+          layer.draw();
       });
 </script>
 
